@@ -1,0 +1,791 @@
+/* ========================================
+   SANJU'S NOTEBOOK - PORTFOLIO STYLES
+   A Digital Journal Experience 🩷
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ========================================
+   JOURNAL COVER
+======================================== */
+
+.journal-cover {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
+    animation: fadeIn 1s ease-in;
+}
+
+.cover-texture {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
+    pointer-events: none;
+}
+
+.cover-content {
+    text-align: center;
+    z-index: 1;
+    animation: slideUp 1.2s ease-out;
+}
+
+.notebook-label {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 60px 80px;
+    border-radius: 20px;
+    box-shadow: 
+        0 10px 40px rgba(146, 82, 133, 0.2),
+        inset 0 1px 3px rgba(255,255,255,0.8);
+    border: 3px solid #f48fb1;
+    position: relative;
+    transform: rotate(-1deg);
+}
+
+.title {
+    font-size: 4em;
+    color: #925285;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 0px rgba(244, 143, 177, 0.3);
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 1.3em;
+    color: #c2185b;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+
+.open-button {
+    margin-top: 40px;
+    padding: 20px 40px;
+    background: linear-gradient(135deg, #f48fb1, #f06292);
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2em;
+    box-shadow: 0 5px 20px rgba(244, 143, 177, 0.4);
+    transition: all 0.3s ease;
+    border: 2px solid white;
+}
+
+.open-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(244, 143, 177, 0.6);
+}
+
+
+/* ========================================
+   JOURNAL WRAPPER
+======================================== */
+
+.journal-wrapper {
+    width: 100vw;
+    min-height: 100vh;
+    padding: 40px 20px;
+    position: relative;
+    animation: pageOpen 1s ease-out;
+}
+
+/* ========================================
+   BOOKMARK NAVIGATION
+======================================== */
+
+.bookmark-tabs {
+    position: fixed;
+    left: 0;
+    top: 20%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bookmark {
+    background: linear-gradient(to right, #f48fb1, #f8bbd0);
+    border: none;
+    padding: 12px 5px;
+    width: 25px;
+    height: 100px;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.bookmark:hover,
+.bookmark.active {
+    width: 140px;
+    box-shadow: 4px 4px 15px rgba(244, 143, 177, 0.4);
+}
+
+.tab-label {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.85em;
+}
+
+.bookmark:hover .tab-label,
+.bookmark.active .tab-label {
+    opacity: 1;
+}
+
+/* ========================================
+   JOURNAL PAGES
+======================================== */
+
+.journal-pages {
+    max-width: 1400px;
+    margin: 0 auto;
+    perspective: 1500px;
+}
+
+.page-spread {
+    display: none;
+    min-height: 80vh;
+    animation: spreadOpen 0.8s ease-out;
+}
+
+.page-spread.active {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.page {
+    flex: 1;
+    min-width: 300px;
+    background: #fffef8;
+    padding: 40px 30px;
+    box-shadow: 
+        0 5px 30px rgba(0,0,0,0.1),
+        inset 0 0 50px rgba(252, 228, 236, 0.2);
+    border-radius: 5px;
+    position: relative;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(146, 82, 133, 0.05) 31px, rgba(146, 82, 133, 0.05) 32px);
+    overflow-x: hidden;
+}
+
+.left-page {
+    border-right: 2px solid #f8bbd0;
+}
+
+.right-page {
+    border-left: 2px solid #f8bbd0;
+}
+
+.page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(252, 228, 236, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(248, 187, 208, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    border-radius: 5px;
+}
+
+.page-content {
+    position: relative;
+    z-index: 1;
+}
+
+.page-title {
+    font-size: 2.5em;
+    color: #925285;
+    margin-bottom: 30px;
+    text-align: left;
+    border-bottom: 3px solid #f48fb1;
+    padding-bottom: 15px;
+    display: inline-block;
+}
+
+/* ========================================
+   STICKY NOTES
+======================================== */
+
+.sticky-note {
+    background: #fff9c4;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+    transform: rotate(-1deg);
+    position: relative;
+}
+
+.sticky-note::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 15px;
+    background: rgba(255, 193, 7, 0.3);
+    border-radius: 0 0 10px 10px;
+}
+
+.sticky-note h3 {
+    color: #f57c00;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.sticky-note p {
+    color: #5d4037;
+    line-height: 1.6;
+    font-size: 0.95em;
+}
+
+.sticky-note.pink {
+    background: #fce4ec;
+    transform: rotate(1deg);
+}
+
+.sticky-note.pink::before {
+    background: rgba(244, 143, 177, 0.3);
+}
+
+.sticky-note.pink h3 {
+    color: #c2185b;
+}
+
+.sticky-note.blue {
+    background: #e3f2fd;
+    transform: rotate(-2deg);
+}
+
+.sticky-note.blue::before {
+    background: rgba(33, 150, 243, 0.3);
+}
+
+.sticky-note.blue h3 {
+    color: #1565c0;
+}
+
+.sticky-note.green {
+    background: #e8f5e9;
+}
+
+.sticky-note.green::before {
+    background: rgba(76, 175, 80, 0.3);
+}
+
+.sticky-note.green h3 {
+    color: #2e7d32;
+}
+
+.sticky-note.purple {
+    background: #f3e5f5;
+    transform: rotate(2deg);
+}
+
+.sticky-note.purple::before {
+    background: rgba(156, 39, 176, 0.3);
+}
+
+.sticky-note.purple h3 {
+    color: #7b1fa2;
+}
+
+.sticky-note.orange {
+    background: #fff3e0;
+    transform: rotate(-1.5deg);
+}
+
+.sticky-note.orange::before {
+    background: rgba(255, 152, 0, 0.3);
+}
+
+.sticky-note.orange h3 {
+    color: #e65100;
+}
+
+.sticky-note.yellow {
+    transform: rotate(2deg);
+}
+
+/* ========================================
+   DOODLE NOTES
+======================================== */
+
+.doodle-notes {
+    margin: 30px 0;
+    padding: 15px;
+    border-left: 4px dashed #f48fb1;
+}
+
+.doodle-notes p {
+    color: #925285;
+    margin: 10px 0;
+    font-size: 0.95em;
+}
+
+.doodle-notes em {
+    color: #c2185b;
+}
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.view-project-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #f48fb1, #f06292);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(244, 143, 177, 0.4);
+    transition: all 0.3s ease;
+}
+
+.view-project-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(244, 143, 177, 0.6);
+}
+
+/* ========================================
+   PROJECT SHOWCASE
+======================================== */
+
+.project-showcase {
+    margin-top: 20px;
+    max-width: 100%;
+}
+
+.taped-image {
+    position: relative;
+    background: white;
+    padding: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+    overflow: hidden;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+}
+
+#page-narrative .taped-image {
+    max-height: 500px;
+}
+
+#page-farm .taped-image,
+#page-emotions .taped-image {
+    max-height: 450px;
+}
+
+.tape {
+    position: absolute;
+    background: rgba(255, 193, 7, 0.4);
+    height: 30px;
+    width: 100px;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tape-top {
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+}
+
+.tape-bottom {
+    bottom: -10px;
+    right: 30px;
+    transform: rotate(3deg);
+}
+
+.tape-top-left {
+    top: -10px;
+    left: 20px;
+    transform: rotate(-5deg);
+}
+
+.tape-top-right {
+    top: -10px;
+    right: 20px;
+    transform: rotate(5deg);
+}
+
+.tape-diagonal {
+    top: 10px;
+    right: 10px;
+    transform: rotate(45deg);
+}
+
+.project-preview {
+    border: none;
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    height: 480px;
+}
+
+/* Specific sizing for each project to show full content properly */
+#page-farm .project-preview {
+    width: 100%;
+    max-width: 520px;
+    height: 550px;
+    transform: scale(0.78);
+    transform-origin: top center;
+}
+
+#page-narrative .project-preview {
+    width: 100%;
+    max-width: 520px;
+    height: 700px;
+    transform: scale(0.68);
+    transform-origin: top center;
+}
+
+#page-emotions .project-preview {
+    width: 100%;
+    max-width: 520px;
+    height: 550px;
+    transform: scale(0.78);
+    transform-origin: top center;
+}
+
+.caption-box {
+    background: rgba(252, 228, 236, 0.5);
+    padding: 15px;
+    border-left: 4px solid #f48fb1;
+    margin-top: 15px;
+}
+
+.caption-box p {
+    margin: 8px 0;
+    color: #5d4037;
+}
+
+.caption-box strong {
+    color: #925285;
+    font-size: 1.1em;
+}
+
+.tech-used {
+    font-size: 0.85em;
+    color: #c2185b;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* ========================================
+   ABOUT PAGE ELEMENTS
+======================================== */
+
+.polaroid {
+    background: white;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: inline-block;
+    transform: rotate(-3deg);
+    margin: 20px;
+}
+
+.photo-placeholder {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.photo-caption {
+    text-align: center;
+    font-size: 0.9em;
+    color: #5d4037;
+    font-style: italic;
+}
+
+.note-to-self {
+    background: #fffef8;
+    padding: 25px;
+    border: 2px solid #f48fb1;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.note-to-self h3 {
+    color: #925285;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.note-to-self p {
+    color: #5d4037;
+    line-height: 1.8;
+}
+
+.doodle-title {
+    color: #c2185b;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    border-bottom: 2px dashed #f48fb1;
+    padding-bottom: 10px;
+}
+
+.doodles {
+    margin: 20px 0;
+}
+
+.doodle-item {
+    background: rgba(252, 228, 236, 0.4);
+    padding: 12px 20px;
+    margin: 10px 0;
+    border-radius: 20px;
+    color: #925285;
+    font-size: 1.05em;
+    border-left: 4px solid #f48fb1;
+}
+
+.socials {
+    margin-top: 40px;
+}
+
+.socials h3 {
+    color: #c2185b;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-link {
+    display: block;
+    background: rgba(252, 228, 236, 0.4);
+    padding: 15px 20px;
+    border-radius: 15px;
+    color: #5d4037;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 4px solid #f48fb1;
+}
+
+.social-link:hover {
+    background: rgba(244, 143, 177, 0.2);
+    transform: translateX(5px);
+    color: #c2185b;
+}
+
+.home-bookmark {
+    background: linear-gradient(to right, #ad1457, #c2185b) !important;
+}
+
+.bookmark[data-page="about"] {
+    background: linear-gradient(to right, #e91e63, #f06292) !important;
+}
+
+/* ========================================
+   MASCOT - Removed per user request
+======================================== */
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes pageOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes spreadOpen {
+    from {
+        opacity: 0;
+        transform: rotateY(-20deg);
+    }
+    to {
+        opacity: 1;
+        transform: rotateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 1024px) {
+    .page-spread.active {
+        flex-direction: column;
+    }
+    
+    .page {
+        min-width: 100%;
+    }
+    
+    .bookmark-tabs {
+        flex-direction: row;
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    .bookmark {
+        width: 70px;
+        height: 30px;
+        border-radius: 8px 8px 0 0;
+        background: linear-gradient(to bottom, #f48fb1, #f8bbd0);
+    }
+    
+    .bookmark:hover,
+    .bookmark.active {
+        width: 70px;
+        height: 50px;
+    }
+    
+    .tab-label {
+        font-size: 0.65em;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5em;
+    }
+    
+    .notebook-label {
+        padding: 40px;
+    }
+    
+    .page {
+        padding: 30px;
+    }
+    
+    .page-title {
+        font-size: 1.8em;
+    }
+    
+    .project-preview,
+    #page-farm .project-preview,
+    #page-narrative .project-preview,
+    #page-emotions .project-preview {
+        width: 480px;
+        height: 300px;
+    }
+    
+    .taped-image {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2em;
+    }
+    
+    .subtitle {
+        font-size: 1em;
+    }
+    
+    .notebook-label {
+        padding: 30px 20px;
+    }
+    
+    .page {
+        padding: 20px;
+    }
+}
+
+
