@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanju's Notebook 🩷</title>
+    <link rel="stylesheet" href="portfolio-styles.css">
+</head>
+<body>
+    <!-- Journal Cover -->
+    <div class="journal-cover" id="cover">
+        <div class="cover-texture"></div>
+        <div class="cover-content">
+            <div class="notebook-label">
+                <h1 class="title">Sanju's Notebook</h1>
+                <p class="subtitle">My Creative Collection</p>
+            </div>
+            <div class="open-button" onclick="openJournal()">
+                <span class="open-text">open journal →</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Journal Content (hidden initially) -->
+    <div class="journal-wrapper" id="journal" style="display: none;">
+        <!-- Navigation Tabs -->
+        <nav class="bookmark-tabs">
+            <button class="bookmark home-bookmark" onclick="goHome()">
+                <span class="tab-label">Home</span>
+            </button>
+            <button class="bookmark" data-page="about" onclick="showPage('about')">
+                <span class="tab-label">About Me</span>
+            </button>
+            <button class="bookmark active" data-page="farm" onclick="showPage('farm')">
+                <span class="tab-label">Interactive Farm</span>
+            </button>
+            <button class="bookmark" data-page="narrative" onclick="showPage('narrative')">
+                <span class="tab-label">Memory Map</span>
+            </button>
+            <button class="bookmark" data-page="emotions" onclick="showPage('emotions')">
+                <span class="tab-label">Web of Emotions</span>
+            </button>
+        </nav>
+
+        <!-- Journal Pages -->
+        <div class="journal-pages">
+            <!-- About Me Page -->
+            <div class="page-spread" id="page-about" style="display: none;">
+                <div class="page left-page">
+                    <div class="page-content">
+                        <h2 class="page-title">About Me 🌸</h2>
+                        <div class="polaroid">
+                            <div class="photo-placeholder">
+                                <img src="6DC95459-A86B-434E-8312-0339D9ECF7BF_1_105_c.jpeg" alt="Sanjana Ganesh" class="profile-photo">
+                            </div>
+                            <p class="photo-caption">Sanjana Ganesh</p>
+                        </div>
+                        <div class="note-to-self">
+                            <h3>Notes:</h3>
+                            <p>Hi! I'm Sanjana, but you can call me Sanju. I'm currently a Communication Studies student at San José State University, double minoring in Journalism and Digital Media Art. I strive to combine all of my academic knowledge to promote the ethical use of technology in storytelling. This journal is a collection of some of my favorite interactive projects.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="page right-page">
+                    <div class="page-content">
+                        <h3 class="doodle-title">Things I Love 💕</h3>
+                        <div class="doodles">
+                            <div class="doodle-item">✂️ Crafting</div>
+                            <div class="doodle-item">📖 Journaling</div>
+                            <div class="doodle-item">📱 Content creation</div>
+                            <div class="doodle-item">📚 Reading</div>
+                            <div class="doodle-item">✍️ Creative writing</div>
+                        </div>
+                        <div class="socials">
+                            <h3>Let's Connect! 💕</h3>
+                            <div class="social-links">
+                                <a href="https://instagram.com/sanju.s.notebook" target="_blank" class="social-link">
+                                    📸 Instagram: @sanju.s.notebook
+                                </a>
+                                <a href="https://tiktok.com/@sanju.s.notebook" target="_blank" class="social-link">
+                                    🎵 TikTok: @sanju.s.notebook
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Farm Page -->
+            <div class="page-spread active" id="page-farm">
+                <div class="page left-page">
+                    <div class="page-content">
+                        <h2 class="page-title">Interactive Farm 🐴</h2>
+                        <div class="reflection-section">
+                            <div class="sticky-note pink">
+                                <h3>What I Learned</h3>
+                                <p>Manually coding with p5.js taught me how to blend art and technology creatively. Adding animal sounds made the project more interactive and engaging beyond just visuals on a screen.</p>
+                            </div>
+                            <div class="sticky-note yellow">
+                                <h3>Creative Process</h3>
+                                <p>I began by designing the grass and sky background, then added the barn, emojis, and text. Integrating the sounds was the hardest part, but seeing it all come together was worth it.</p>
+                            </div>
+                            <div class="doodle-notes">
+                                <p>💭 <em>Remember: Animals respond to clicks</em></p>
+                                <p>🎨 <em>Blue sky + green grass = farm vibes</em></p>
+                            </div>
+                        </div>
+                        <a href="InteractiveAnimalFarm/index.html" target="_blank" class="view-project-btn">
+                            View Live Project →
+                        </a>
+                    </div>
+                </div>
+                <div class="page right-page">
+                    <div class="page-content">
+                        <div class="project-showcase">
+                            <div class="taped-image">
+                                <div class="tape tape-top"></div>
+                                <iframe src="InteractiveAnimalFarm/index.html" class="project-preview"></iframe>
+                                <div class="tape tape-bottom"></div>
+                            </div>
+                            <div class="caption-box">
+                                <p><strong>Interactive Farm Scene</strong></p>
+                                <p>Click the animals to hear their sounds! 🐴🐔🐑🐄🐷</p>
+                                <p class="tech-used">Built with: p5.js, JavaScript</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Map Page -->
+            <div class="page-spread" id="page-narrative" style="display: none;">
+                <div class="page left-page">
+                    <div class="page-content">
+                        <h2 class="page-title">Memory Map 🗺️</h2>
+                        <div class="reflection-section">
+                            <div class="sticky-note blue">
+                                <h3>What I Learned</h3>
+                                <p>It can be challenging to build a platform where people worldwide can log into a single server to upload content, as it may lead to glitches and accessibility issues.
+                                </p>
+                            </div>
+                            <div class="sticky-note green">
+                                <h3>Creative Process</h3>
+                                <p>I started by using Cursor to code the background, map, and text, then duplicated the code for each country’s section. It’s still a work in progress!</p>
+                            </div>
+                            <div class="doodle-notes">
+                                <p>✈️ <em>Travel through visual narratives</em></p>
+                                <p>🌍 <em>Every place has a tale</em></p>
+                            </div>
+                        </div>
+                        <a href="WebNarrative/index.html" target="_blank" class="view-project-btn">
+                            Explore the Map →
+                        </a>
+                    </div>
+                </div>
+                <div class="page right-page">
+                    <div class="page-content">
+                        <div class="project-showcase">
+                            <div class="taped-image">
+                                <div class="tape tape-top-left"></div>
+                                <div class="tape tape-top-right"></div>
+                                <iframe src="WebNarrative/index.html" class="project-preview"></iframe>
+                            </div>
+                            <div class="caption-box">
+                                <p><strong>Interactive Memory Map</strong></p>
+                                <p>Click different countries to upload images and look at others'! 🌍</p>
+                                <p class="tech-used">Built with: HTML, CSS, JavaScript</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Web of Emotions Page -->
+            <div class="page-spread" id="page-emotions" style="display: none;">
+                <div class="page left-page">
+                    <div class="page-content">
+                        <h2 class="page-title">Web of Emotions 💫</h2>
+                        <div class="reflection-section">
+                            <div class="sticky-note purple">
+                                <h3>What I Learned</h3>
+                                <p>Emotions are complex and deeply interconnected. This project allowed me to visualize feelings through web design, inspired by one of my favorite films.</p>
+                            </div>
+                            <div class="sticky-note orange">
+                                <h3>Creative Process</h3>
+                                <p>Each emotion has its own space, color, and story. I included personal photos along with images representing each emotion across several pages.
+                                </p>
+                            </div>
+                            <div class="doodle-notes">
+                                <p>💭 <em>Feelings are art</em></p>
+                                <p>🎨 <em>Colors express emotions</em></p>
+                            </div>
+                        </div>
+                        <a href="WebOfEmotions/index.html" target="_blank" class="view-project-btn">
+                            Explore Emotions →
+                        </a>
+                    </div>
+                </div>
+                <div class="page right-page">
+                    <div class="page-content">
+                        <div class="project-showcase">
+                            <div class="taped-image">
+                                <div class="tape tape-diagonal"></div>
+                                <iframe src="WebOfEmotions/index.html" class="project-preview"></iframe>
+                            </div>
+                            <div class="caption-box">
+                                <p><strong>Interactive Emotion Web</strong></p>
+                                <p>Navigate through different emotional experiences 💕</p>
+                                <p class="tech-used">Built with: HTML, CSS, JavaScript</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="portfolio-script.js"></script>
+</body>
+</html>
+
+
